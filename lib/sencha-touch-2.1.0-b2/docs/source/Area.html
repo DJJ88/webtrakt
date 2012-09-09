@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>The source code</title>
+  <link href="../resources/prettify/prettify.css" type="text/css" rel="stylesheet" />
+  <script type="text/javascript" src="../resources/prettify/prettify.js"></script>
+  <style type="text/css">
+    .highlight { display: block; background-color: #ddd; }
+  </style>
+  <script type="text/javascript">
+    function highlight() {
+      document.getElementById(location.hash.replace(/#/, "")).className = "highlight";
+    }
+  </script>
+</head>
+<body onload="prettyPrint(); highlight();">
+  <pre class="prettyprint lang-js"><span id='Ext-chart-series-sprite-Area'>/**
+</span> * Area sprite.
+ */
+Ext.define(&quot;Ext.chart.series.sprite.Area&quot;, {
+    alias: 'sprite.areaSeries',
+    extend: &quot;Ext.chart.series.sprite.StackedCartesian&quot;,
+
+    inheritableStatics: {
+        def: {
+            defaults: {
+                transformFillStroke: true
+            }
+        }
+    },
+
+    renderClipped: function (surface, ctx, clip) {
+        var me = this,
+            attr = me.attr,
+            dataX = attr.dataX,
+            dataY = attr.dataY,
+            dataStartY = attr.dataStartY,
+            matrix = attr.matrix,
+            x, y, i,
+            xx = matrix.elements[0],
+            dx = matrix.elements[4],
+            yy = matrix.elements[3],
+            dy = matrix.elements[5],
+            start = Math.max(0, Math.floor(clip[0])),
+            end = Math.min(dataX.length - 1, Math.ceil(clip[2]));
+
+        ctx.beginPath();
+        for (i = start; i &lt;= end; i++) {
+            x = dataX[i] * xx + dx;
+            y = dataY[i] * yy + dy;
+            ctx.lineTo(x, y);
+        }
+        if (dataStartY) {
+            for (i = end; i &gt;= start; i--) {
+                x = dataX[i] * xx + dx;
+                y = dataStartY[i] * yy + dy;
+                ctx.lineTo(x, y);
+            }
+        } else {
+            // dataStartY[i] == 0;
+            ctx.lineTo(clip[0] + clip[2], y);
+            ctx.lineTo(clip[0] + clip[2], dy);
+            ctx.lineTo(clip[0], dy);
+            ctx.lineTo(clip[0], dataY[i] * yy + dy);
+        }
+        ctx.fill();
+
+        ctx.beginPath();
+        for (i = start; i &lt;= end; i++) {
+            x = dataX[i] * xx + dx;
+            y = dataY[i] * yy + dy;
+            ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+    }
+});</pre>
+</body>
+</html>
