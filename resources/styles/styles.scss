@@ -1,0 +1,297 @@
+// colors
+$dark-grey: #606060;
+$light-grey: #ebebeb;
+$medium-grey: #e0e0e0;
+$dark-blue: #8ebadb;
+$light-blue: #E3F1FA;
+
+.titlebar {
+	font-size: 0.9em;
+}
+
+/* -------------------------------
+ * REPORT VIEW
+ * ------------------------------- */
+#reportButton {
+	margin: 0.5em;
+}
+#addressTextField {
+	font-size: 0.8em;
+	
+	&.x-item-disabled .x-form-label span,
+	&.x-item-disabled input {
+		color: #000;
+		-webkit-text-fill-color: #000;
+	}
+	
+	.x-input-text {
+		padding-left: 0.7em;
+		padding-right: 0.7em;
+	}
+}
+
+.typeSelectToolbar {
+	background: none;
+	padding: 0;
+	
+	#typeSelectField {
+		margin: 0 0.5em;
+		width: auto;
+		
+		&.empty {
+			.x-component-outer::before,
+			.x-component-outer {
+				-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 10px 3px rgba(230, 70, 20, 0.6);
+				-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 10px 3px rgba(230, 70, 20, 0.6);
+				box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 10px 3px rgba(230, 70, 20, 0.6);
+			}
+		}
+				
+		.x-component-outer::before,
+		.x-component-outer {
+			-webkit-border-radius: 0.4em;
+			border-radius: 0.4em;
+		}
+		
+		.x-form-field {
+			height: 1.6em;
+		}
+	}
+}
+
+#infoPopupPanel {
+	font-size: 0.9em;
+	max-width: 90%;
+	
+	.content {
+		padding: 0.5em;
+		
+		ol {
+			padding-left: 2em;
+		}
+		ol li {
+			list-style: inherit;
+			margin-bottom: 0.2em;
+		}
+	}
+}
+
+// problem added popup
+#problemAddedPopupPanel {
+	width: 200px;
+	height: 150px;
+	background-color: rgba(0, 0, 0, 0.7);
+	-webkit-border-radius: 0.5em;
+	border-radius: 0.5em;
+	-webkit-box-shadow: none;
+	
+	.x-panel-inner {
+		color: #fff;
+		text-align: center;
+		margin-top: 0.8em;
+		padding-top: 5.2em;
+		background: url(../images/tick_white.png) no-repeat 50% 0 transparent;
+		background-size: 80px 80px;
+		overflow: hidden;
+		font-weight: bold;
+	}
+}
+
+/* -------------------------------
+ * LIST VIEW
+ * ------------------------------- */
+#problemList {
+	.x-list-item {
+		background-color: #fff;
+		
+		&.x-item-pressed .x-list-item-label {
+			background: #D8E3EE none;
+			border-top: 1px solid #aaaaaa;
+			box-shadow: inset 0 0 10px #abccee;
+			-webkit-box-shadow: inset 0 0 10px #abccee;
+			-moz-box-shadow: inset 0 0 10px #abccee;
+			box-shadow: inset 0 0 10px #abccee;
+		}
+		
+		.problem-item {
+			.image {
+				float: left;
+				margin-top: 0.2em;
+				img {
+					width: 30px;
+				}
+			}
+
+			.info {
+				margin-left: 2.5em;
+
+				.date {
+					font-size: 0.7em;
+					color: $dark-grey;
+				}
+				.address {
+					margin-top: 0.2em;
+					font-size: 0.9em;
+				}
+			}
+			
+			&.done {
+				color: $dark-grey;
+			}
+		}
+	}
+	
+	.x-list-emptytext {
+		text-align: center;
+		margin: 1em 0;
+		background-color: #F7F7F7;
+	}
+	
+	// pull to refresh plugin
+	.x-list-pullrefresh {
+		height: 4em;
+		margin-top: 1em;
+		color: #6c6c6c;
+		
+		.x-list-pullrefresh-wrap {
+			margin-left: 0.3em;
+			
+			.x-list-pullrefresh-message {
+				font-size: 1.2em;
+			}
+		}
+		
+		.x-loading-spinner {
+			font-size: 1.9em;
+		}
+		
+		.x-list-pullrefresh-arrow {
+			// Transition doesn't work well on phones
+			//-webkit-transition-property: -webkit-transform;
+			//-webkit-transition-duration: 250ms;
+			background: transparent url('../images/arrow_black.png') center center no-repeat;
+			background-size: 17px 47px;
+		}
+	}
+		
+	// pull to refresh plugin - loading
+	.x-list-pullrefresh-loading .x-list-pullrefresh-arrow {
+		display: none;
+	}
+	.x-list-pullrefresh-loading .x-loading-spinner {
+		display: block;
+	}
+}
+
+#problemListSearchField .x-field-input .x-form-field {
+	margin-left: 1.4em;
+}
+
+#actionSheetTitlePanel {
+	color: #fff;
+	margin: 0.5em 0;
+}
+
+/* -------------------------------
+ * MAP VIEW
+ * ------------------------------- */
+#problemMap .infowindow-content {
+	.date {
+		font-size: 0.7em;
+		color: $dark-grey;
+		margin-bottom: 0.2em;
+	}
+	.image {
+		float: left;
+		margin-top: 0.2em;
+		
+		img {
+			width: 30px;
+		}
+	}
+	.info {
+		margin-left: 2.5em;
+		
+		h1 {
+			margin-bottom: 0.2em;
+			
+			.status {
+				color: #fff;
+				font-size: 0.6em;
+				margin-left: 0.7em;
+				background-color: #999;
+				padding: 0.1em 0.5em;
+				border-radius: 0.6em;
+				font-weight: bold;
+				text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+				
+				&.new {
+					background-color: #468847;
+				}
+				&.inprogress {
+					background-color: #3A87AD;
+				}
+			}
+		}
+		.address {
+			font-size: 0.8em;
+		}	
+	}
+}
+
+#settingsPopupPanel {
+	max-width: 90%;
+	min-width: 250px;
+	
+	.x-panel-inner {
+		.x-toolbar {
+			font-size: 0.9em;
+		}
+		
+		.typeFilterFieldSet {
+			margin: 0.4em 0.4em 0 0.4em;
+			padding-bottom: 0.4em;
+
+			.x-form-fieldset-title {
+				color: $dark-grey;
+				margin: 0.2em 0 0.4em 0;
+			}
+		}
+
+		.x-toggle-field .x-component-outer {
+			padding: 0.4em;
+
+			.x-toggle {
+				font-size: 0.9em;
+			}
+		}
+
+		#layerSegementedButton {
+			margin: 0.4em;
+			
+			.x-button-label {
+				font-size: 0.8em;
+			}
+		}
+	}
+}
+
+/* -------------------------------
+ * ICON CLASSES
+ * ------------------------------- */
+.x-tab .x-button-icon.list,
+.x-button .x-button-icon.x-icon-mask.list {
+	-webkit-mask-image: url('../images/pictos/list.png');
+}
+.x-tab .x-button-icon.hot,
+.x-button .x-button-icon.x-icon-mask.hot {
+	-webkit-mask-image: url('../images/pictos/hot.png');
+}
+.x-tab .x-button-icon.marker,
+.x-button .x-button-icon.x-icon-mask.marker {
+	-webkit-mask-image: url('../images/pictos/locate4.png');
+}
+.x-tab .x-button-icon.cloudbolt,
+.x-button .x-button-icon.x-icon-mask.cloudbolt {
+	-webkit-mask-image: url('../images/pictos/cloud_bolt.png');
+}
